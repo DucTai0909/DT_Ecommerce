@@ -18,16 +18,19 @@
                 <div class="col-md-5 my-auto">
                     <ul class="nav justify-content-end">
                         
-                        <li class="nav-item">
+                        <!-- Add the 'active' class to the appropriate nav item -->
+                        <li class="nav-item {{ request()->is('cart*') ? 'active' : '' }}">
                             <a class="nav-link" href="#">
                                 <i class="fa fa-shopping-cart"></i> Cart (0)
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-heart"></i> Wishlist (0)
+
+                        <li class="nav-item {{ request()->is('wishlist') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('wishlist') }}">
+                                <i class="fa fa-heart"></i> Wishlist ( <livewire:frontend.wishlist-count/> )
                             </a>
                         </li>
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">

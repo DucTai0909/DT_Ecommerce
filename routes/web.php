@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\WishListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::get('/', [FrontendController::class, 'index']);
 Route::get('/collections', [FrontendController::class, 'categories']);
 Route::get('/collections/{category_slug}',[FrontendController::class, 'products']);
 Route::get('/collections/{category_slug}/{product_slug}',[FrontendController::class, 'productView']);
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/wishlist', [WishListController::class, 'index']);
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
