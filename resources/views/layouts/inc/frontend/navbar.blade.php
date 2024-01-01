@@ -20,8 +20,8 @@
                         
                         <!-- Add the 'active' class to the appropriate nav item -->
                         <li class="nav-item {{ request()->is('cart*') ? 'active' : '' }}">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-shopping-cart"></i> Cart (0)
+                            <a class="nav-link" href="{{ url('cart') }}">
+                                <i class="fa fa-shopping-cart"></i> Cart ( <livewire:frontend.cart.cart-count/> )
                             </a>
                         </li>
 

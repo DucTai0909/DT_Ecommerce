@@ -8,8 +8,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishListController;
 
@@ -37,6 +39,9 @@ Route::get('/collections/{category_slug}/{product_slug}',[FrontendController::cl
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/wishlist', [WishListController::class, 'index']);
+    Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/checkout', [CheckoutController::class, 'index']);
+
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
