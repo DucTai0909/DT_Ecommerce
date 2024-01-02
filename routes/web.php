@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\WishListController;
 
 /*
@@ -41,8 +42,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/wishlist', [WishListController::class, 'index']);
     Route::get('/cart', [CartController::class, 'index']);
     Route::get('/checkout', [CheckoutController::class, 'index']);
+    
+    Route::get('/orders', [OrderController::class, 'index']);
+    Route::get('/orders/{orderId}', [OrderController::class, 'show']);
 
 });
+
+Route::get('thank-you', [FrontendController::class, 'thankyou']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

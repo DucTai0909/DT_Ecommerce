@@ -96,7 +96,7 @@
                             <span class="float-end" style="color: red">{{ number_format($totalPrice, 0, ',', '.') }}</span>
                         </b></h4>
                         <hr>
-                        <a href="{{ url('/checkout') }}" class="btn btn-warning w-100">Checkout</a>
+                        <a href="{{ url('/checkout') }}" @if ($cart->count() == 0) style="pointer-events: none" @endif class="btn btn-warning w-100">Checkout</a>
                     </div>
                 </div>
             </div>

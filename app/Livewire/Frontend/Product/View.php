@@ -122,7 +122,7 @@ class View extends Component
 
                     }else{
                         $this->dispatch('message', 
-                                message: 'Please select the color',
+                                message: 'Please select color',
                                 type:'error');
                         return false;
                     }
