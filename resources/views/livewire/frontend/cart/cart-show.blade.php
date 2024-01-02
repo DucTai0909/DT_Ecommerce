@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="col-md-1 my-auto">
                                         <label class="price" style="color: red"> {{ number_format($cartItem->product->selling_price * $cartItem->quantity, 0, ',', '.') }}</label>
-                                        @php $totalPrice =+ $cartItem->product->selling_price * $cartItem->quantity @endphp
+                                        @php $totalPrice += $cartItem->product->selling_price * $cartItem->quantity @endphp
                                     </div>
                                     <div class="col-md-2 col-5 my-auto">
                                         <div class="remove">

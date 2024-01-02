@@ -13,6 +13,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    
+    {{-- Own Carousel --}}
+    <link rel="stylesheet" href={{ asset('assets/css/owl.carousel.min.css') }}>
+    <link rel="stylesheet" href={{ asset('assets/css/owl.theme.default.min.css') }}>
+
     <!-- Default theme -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
 
@@ -24,6 +29,7 @@
 
     <!-- Scripts -->
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+
     
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   
@@ -78,6 +84,9 @@
         });
     });
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{{ asset('assets/js/owl.carousel.min.js') }}" ></script>
+@yield('script')
 
     @livewireScripts
     @stack('scripts')
