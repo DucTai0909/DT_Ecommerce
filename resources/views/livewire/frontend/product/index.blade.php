@@ -5,7 +5,7 @@
                 
                 <div class="card">
                     <div class="card-header">
-                        <h4><b>Brands</b></h4>
+                        <h4><b>Thương Hiệu</b></h4>
                     </div>
                     <div class="card-body">
                         @foreach ($category->brands as $brandItem)
@@ -20,16 +20,16 @@
 
             <div class="card mt-3">
                 <div class="card-header">
-                    <h4><b>Price</b></h4>
+                    <h4><b>Giá</b></h4>
                 </div>
                 <div class="card-body">
                     <label class="d-block">
                         <input type="radio" name="priceSort" wire:model="priceInput" wire:click="applyFilter"
-                            value="high-to-low"/> High to Low
+                            value="high-to-low"/> Giảm Dần
                     </label>
                     <label class="d-block">
                         <input type="radio" name="priceSort" wire:model="priceInput" wire:click="applyFilter"
-                            value="low-to-high"/> Low to High
+                            value="low-to-high"/> Tăng Dần
                     </label>
                 </div>
             </div>

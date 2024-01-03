@@ -9,14 +9,14 @@
                         <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Products</h4>
+                                    <h4><b>Sản Phẩm</b></h4>
                                 </div>
                                 <div class="col-md-2">
-                                    <h4>Price</h4>
+                                    <h4><b>Giá</b></h4>
                                 </div>
                                 
                                 <div class="col-md-4">
-                                    <h4>Remove</h4>
+                                    <h4><b>Xóa</b></h4>
                                 </div>
                             </div>
                         </div>
@@ -44,10 +44,10 @@
                                             <div class="remove">
                                                 <button type="button" wire:click="removeWishlistItem({{ $wishlistItem->id }})" class="btn btn-danger btn-sm">
                                                     <span wire:loading.remove wire:target="removeWishlistItem({{ $wishlistItem->id }})">
-                                                        <i class="fa fa-trash"></i> Remove
+                                                        <i class="fa fa-trash"></i> Xóa
                                                     </span>
                                                     <span wire:loading wire:target="removeWishlistItem({{ $wishlistItem->id }})">
-                                                        <i class="fa fa-trash"></i> Removing
+                                                        <i class="fa fa-trash"></i> Đang Xóa
                                                     </span>
                                                 </button>
                                             </div>

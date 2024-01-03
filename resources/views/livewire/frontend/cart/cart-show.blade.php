@@ -1,7 +1,7 @@
 <div>
     <div class="py-3 py-md-5">
         <div class="container">
-            <h4>My Cart</h4>
+            <h4><b>Giỏ Hàng</b></h4>
             <hr>
             <div class="row">
                 <div class="col-md-12">
@@ -10,19 +10,19 @@
                         <div class="cart-header d-none d-sm-none d-mb-block d-lg-block">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Products</h4>
+                                    <h4><b>Sản Phẩm</b></h4>
                                 </div>
                                 <div class="col-md-1">
-                                    <h4>Price</h4>
+                                    <h4><b>Giá</b></h4>
                                 </div>
                                 <div class="col-md-2">
-                                    <h4>Quantity</h4>
+                                    <h4><b>Số Lượng</b></h4>
                                 </div>
                                 <div class="col-md-1">
-                                    <h4>Total</h4>
+                                    <h4><b>Tổng</b></h4>
                                 </div>
                                 <div class="col-md-2">
-                                    <h4>Remove</h4>
+                                    <h4><b>Xóa</b></h4>
                                 </div>
                             </div>
                         </div>
@@ -65,10 +65,10 @@
                                         <div class="remove">
                                             <button type="button" wire:loading.attr="disabled" wire:click="removeCartItem({{ $cartItem->id }})" class="btn btn-danger btn-sm">
                                                 <span wire:loading.remove wire:target="removeCartItem({{ $cartItem->id }})">
-                                                    <i class="fa fa-trash"></i> Remove
+                                                    <i class="fa fa-trash"></i> Xóa
                                                 </span>
                                                 <span wire:loading wire:target="removeCartItem({{ $cartItem->id }})">
-                                                    <i class="fa fa-trash"></i> Removing
+                                                    <i class="fa fa-trash"></i> Đang Xóa
                                                 </span>
                                             </button>
                                         </div>
@@ -77,7 +77,7 @@
                                 </div>
                            @endif 
                         @empty
-                            <div>No Cart Item Avaliable</div>
+                            <div>Giỏ hàng không có sản phẩm</div>
                         @endforelse
                          
                     </div>
@@ -87,16 +87,16 @@
             <div class="row">
                 <div class="col-md-8 my-md-auto mt-3">
                     <h4>
-                        Get the best deals & offers <a href="{{ url('/collections') }}">Show Now</a>
+                        Tìm sản phẩm phù hợp với mức giá hợp lý nhất <a href="{{ url('/collections') }}">Mua Ngay</a>
                     </h4>
                 </div>
                 <div class="col-md-4 mt-3">
                     <div class="shadow-sm bg-white p-3">
-                        <h4><b>Total:
+                        <h4><b>Tổng:
                             <span class="float-end" style="color: red">{{ number_format($totalPrice, 0, ',', '.') }}</span>
                         </b></h4>
                         <hr>
-                        <a href="{{ url('/checkout') }}" @if ($cart->count() == 0) style="pointer-events: none" @endif class="btn btn-warning w-100">Checkout</a>
+                        <a href="{{ url('/checkout') }}" @if ($cart->count() == 0) style="pointer-events: none" @endif class="btn btn-warning w-100">Đặt Hàng</a>
                     </div>
                 </div>
             </div>
