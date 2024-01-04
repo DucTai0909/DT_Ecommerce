@@ -126,6 +126,111 @@
             </div>
         </div>
     </div>
+
+    <div class="py-3 py-md-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <h3><b>Có Thể Bạn Sẽ Thích</b></h3>
+                    <div class="underline"></div>
+                </div>
+                <div class="col-md-12">
+                    @if ($category)
+                        <div class="owl-carousel owl-theme four-carousel">
+                            @foreach ($category->relatedProducts as $relatedProductItem)
+                                <div class="item mb-3">
+                                    <div class="product-card">
+                                        <div class="product-card-img">
+                                            <label class="stock bg-danger">HOT</label>
+
+                                            @if ($relatedProductItem->productImages->count() > 0)
+                                                <a href="{{ url('/collections/'.$relatedProductItem->category->slug.'/'.$relatedProductItem->slug) }}">
+                                                    <img src="{{ asset($relatedProductItem->productImages[0]->image) }}" alt="{{ $relatedProductItem->name }}" class="w-100 h-100" >
+                                                </a>
+                                            @endif
+                                        </div>
+                                        <div class="product-card-body">
+                                            <p class="product-brand">{{ $relatedProductItem->brand }}</p>
+                                            <h5 class="product-name">
+                                                <a href="{{ url('/collections/'.$relatedProductItem->category->slug.'/'.$relatedProductItem->slug) }}">
+                                                    {{ $relatedProductItem->name }}
+                                                </a>
+                                            </h5>
+                                            <div>
+                                                <span class="selling-price">{{ number_format($relatedProductItem->selling_price, 0, ',', '.') }}</span>
+                                                <span class="original-price">{{ number_format($relatedProductItem->original_price, 0, ',', '.') }}</span>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="p-2">
+                            <h4>Không Có Sản Phẩm</h4>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-3 py-md-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <h3><b>
+                        Sản Phẩm Của 
+                        @if ($product)
+                            {{ $product->brand }}
+                        @endif
+                    </b></h3>
+                    <div class="underline"></div>
+                </div>
+                <div class="col-md-12">
+                    @if ($category)
+                        <div class="owl-carousel owl-theme four-carousel">
+                            @foreach ($category->relatedProducts as $relatedProductItem)
+                                @if ($relatedProductItem->brand == "$product->brand")
+                                    <div class="item mb-3">
+                                        <div class="product-card">
+                                            <div class="product-card-img">
+                                                <label class="stock bg-danger">HOT</label>
+
+                                                @if ($relatedProductItem->productImages->count() > 0)
+                                                    <a href="{{ url('/collections/'.$relatedProductItem->category->slug.'/'.$relatedProductItem->slug) }}">
+                                                        <img src="{{ asset($relatedProductItem->productImages[0]->image) }}" alt="{{ $relatedProductItem->name }}" class="w-100 h-100" >
+                                                    </a>
+                                                @endif
+                                            </div>
+                                            <div class="product-card-body">
+                                                <p class="product-brand">{{ $relatedProductItem->brand }}</p>
+                                                <h5 class="product-name">
+                                                    <a href="{{ url('/collections/'.$relatedProductItem->category->slug.'/'.$relatedProductItem->slug) }}">
+                                                        {{ $relatedProductItem->name }}
+                                                    </a>
+                                                </h5>
+                                                <div>
+                                                    <span class="selling-price">{{ number_format($relatedProductItem->selling_price, 0, ',', '.') }}</span>
+                                                    <span class="original-price">{{ number_format($relatedProductItem->original_price, 0, ',', '.') }}</span>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            @endforeach
+                    @else
+                        <div class="p-2">
+                            <h4>Không Có Sản Phẩm</h4>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 @push('scripts')
@@ -151,6 +256,24 @@
         });
 
     });
+
+    $('.four-carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        dots:true,
+        nav:false,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:4
+            }
+        }
+    })
 </script>
 
 @endpush

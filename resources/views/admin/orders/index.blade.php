@@ -7,18 +7,18 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <h3>Orders</h3>
+                <h3>Đơn Hàng</h3>
             </div>
             <div class="card-body">
 
                 <form action="" method="GET">
                     <div class="row">
                         <div class="col-md-3">
-                            <label>Filter by Date</label>
+                            <label>Lọc Theo Ngày</label>
                             <input type="date" name="date" value="{{ Request::get('date')  }}" class="form-control">
                         </div>
                         <div class="col-md-3">
-                            <label>Filter by Status</label>
+                            <label>Lọc Theo Trạng Thái</label>
                             <select name="status" class="form-select">
                                 <option value="">Select All Status</option>
                                 <option value="in progress" {{ Request::get('status') =='in progress' ? 'selected' :'' }}>In Progress</option>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="col-md-6">
                             <br/>
-                            <button class="btn btn-primary" type="submit">Filter</button>
+                            <button class="btn btn-primary" type="submit">Lọc</button>
                         </div>
                     </div>
                 </form>
@@ -39,13 +39,13 @@
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped">
                                 <thead>
-                                    <th>Order ID</th>
+                                    <th>ID Đơn Hàng</th>
                                     <th>Tracking Num</th>
                                     <th>Username</th>
-                                    <th>Payment Mode</th>
-                                    <th>Ordered Date</th>
-                                    <th>Status Message</th>
-                                    <th>Action</th>
+                                    <th>Phương Thức Thanh Toán</th>
+                                    <th>Ngày Đặt Hàng</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Hành Động</th>
                                 </thead>
                                 <tbody>
                                     @forelse ($orders as $item)
@@ -60,7 +60,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7">No Orders Avaliable</td>
+                                            <td colspan="7">Không Có Đơn Hàng</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

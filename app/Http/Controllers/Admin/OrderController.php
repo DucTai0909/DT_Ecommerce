@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Carbon\Carbon;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Mail\InvoiceOrderMailable;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
 
 class OrderController extends Controller
@@ -15,8 +17,6 @@ class OrderController extends Controller
         $todayDate = Carbon::now();
         $orders = Order::when($request->date !=null, function($q) use ($request) {
                            return $q->whereDate('created_at', $request->date);
-                        }, function($q) use ($todayDate){
-                            return $q->whereDate('created_at', $todayDate);
                         })
                         ->when($request->status !=null, function($q) use ($request) {
                             return $q->where('status_message', $request->status);
@@ -58,5 +58,16 @@ class OrderController extends Controller
         $pdf = Pdf::loadView('admin.invoice.generate-invoice', $data);
         $todayDate = Carbon::now();
         return $pdf->download('invoice-'.$order->id.'-'.$todayDate.'.pdf');
+    }
+
+    public function mailInvoice($orderId){
+        $order = Order::findOrFail($orderId);
+        try{
+            Mail::to($order->email)->send(new InvoiceOrderMailable($order));
+
+        }catch(\Exception $e){
+            return redirect('admin/orders/'.$orderId)->with('message', 'Có lỗi xảy ra'. $e);
+        }
+        return redirect('admin/orders/'.$orderId)->with('message', 'Hóa đơn đã được gửi đến email '.$order->email);
     }
 }

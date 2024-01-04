@@ -11,7 +11,7 @@
                     <div class="shadow bg-white p-3">
                         <h4 class="text-primary">
                             Tổng Tiền Sản Phẩm :
-                            <span class="float-end">{{ number_format($this->totalProductAmount, 0, ',', '.') }}</span>
+                            <span class="float-end" style="color: red"><b>{{ number_format($this->totalProductAmount, 0, ',', '.') }} đ</b></span>
                         </h4>
                         <hr>
                         <small>* Thời gian giao hàng khoảng từ 2 ngày (TPHCM) và 5-7 ngày (khu vực khác).</small>
