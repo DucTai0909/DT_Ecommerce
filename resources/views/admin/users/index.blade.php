@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Product')
+@section('title', 'Users')
 
 @section('content')
 
@@ -13,9 +13,9 @@
 
         <div class="card">
             <div class="card-header">
-                <h3>Sản Phẩm
-                    <a href="{{ url('admin/products/create') }}" 
-                        class="btn btn-primary btn-sm text-white float-end">Thêm Sản Phẩm
+                <h3>Người Dùng
+                    <a href="{{ url('admin/users/create') }}" 
+                        class="btn btn-primary btn-sm text-white float-end">Thêm Người Dùng
                     </a>
                 </h3>
             </div>
@@ -24,43 +24,45 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Danh Mục</th>
-                            <th>Sản Phẩm</th>
-                            <th>Giá</th>
-                            <th>Số Lượng</th>
-                            <th>Tình Trạng</th>
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Vai trò</th>
                             <th>Hành Động</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($products as $product)
+                        @forelse ($users as $user)
                         <tr>
-                            <td>{{$product->id}}</td>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
                             <td>
-                                @if ($product->category)
-                                    {{$product->category->name}}
+                                @if ($user->role_as == '0')
+                                    <label class="badge btn-primary">Khách</label>
+                                @elseif ($user->role_as == '1')
+                                    <label class="badge btn-success">Admin</label>
                                 @else
-                                    No Category
+                                    <label class="badge btn-danger">Không Có</label>
                                 @endif
+                            
                             </td>
-                            <td>{{$product->name}}</td>
-                            <td>{{$product->selling_price}}</td>
-                            <td>{{$product->quantity}}</td>
-                            <td>{{$product->status == '1' ? 'Hidden' : 'Visible'}}</td>
+
                             <td>
-                                <a href="{{ url('admin/products/'.$product->id.'/edit') }}" class="btn btn-sm btn-success">Edit</a>
-                                <a href="{{ url('admin/products/'.$product->id.'/delete') }}" onclick="return confirm('Make sure that you want to delete this data?')" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ url('admin/users/'.$user->id.'/edit') }}" class="btn btn-sm btn-success">Sửa</a>
+                                <a href="{{ url('admin/users/'.$user->id.'/delete') }}" 
+                                    onclick="return confirm('Xác Nhận Xóa Người Dùng Này')" 
+                                    class="btn btn-sm btn-danger">Xóa</a>
                             </td>
                         </tr>
                         @empty
                         <tr>
-                            <td colspan="7">No Product Avaliable</td>
+                            <td colspan="5">Không Tồn Tại Người Dùng</td>
                         </tr>
                         @endforelse
                     </tbody>
                 </table>
                 <div>
-                    {{ $products->links() }}
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

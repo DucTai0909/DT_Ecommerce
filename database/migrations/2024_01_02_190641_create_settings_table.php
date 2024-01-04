@@ -32,7 +32,6 @@ return new class extends Migration
 
             $table->timestamps();
         });
-        return redirect()->back()->with('message', 'Settings Created');
     }
 
     /**

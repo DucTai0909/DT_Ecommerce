@@ -6,9 +6,9 @@
                    <a href="{{ url('/') }}"><h5 class="brand-name">{{ $appSetting->website_name ?? 'website name' }}</h5></a>
                 </div>
                 <div class="col-md-5 my-auto">
-                    <form role="search">
+                    <form action="{{ url('search') }}" method="GET" role="search">
                         <div class="input-group">
-                            <input type="search" placeholder="Search your product" class="form-control" />
+                            <input type="search" name="search" value="{{ Request::get('search') }}" placeholder="Tìm kiếm sản phẩm" class="form-control" />
                             <button class="btn bg-white" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -51,7 +51,7 @@
  
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Tài Khoản</a></li>
+                            <li><a class="dropdown-item" href="{{ url('profile') }}"><i class="fa fa-user"></i> Tài Khoản</a></li>
                             <li><a class="dropdown-item" href="{{ url('orders') }}"><i class="fa fa-list"></i> Đơn Hàng</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i> Yêu Thích</a></li>
                             <li><a class="dropdown-item" href="{{ url('cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>

@@ -65,4 +65,15 @@ class FrontendController extends Controller
         $featuredProducts = Product::where('featured', '1')->get();
         return view('frontend.pages.featured-products', compact('featuredProducts'));
     }
+
+    public function searchProducts(Request $request){
+        if($request->search){
+            $searchProducts = Product::where('name', 'LIKE', '%'.$request->search.'%')
+                                        ->latest()
+                                        ->paginate(10);
+            return view('frontend.pages.search', compact('searchProducts'));
+        }else{
+            return redirect()->back()->with('message', 'Không tìm thấy sản phẩm');
+        }
+    }
 }

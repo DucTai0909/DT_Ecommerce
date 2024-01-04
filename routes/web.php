@@ -13,9 +13,11 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\WishListController;
 
 /*
@@ -44,6 +46,7 @@ Route::controller(FrontendController::class)->group(function(){
     Route::get('/collections/{category_slug}/{product_slug}','productView');
     Route::get('/new-arrivals', 'newArrival');
     Route::get('/featured-products', 'featuredProducts');
+    Route::get('search', 'searchProducts');
 
 });
 
@@ -54,6 +57,9 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders/{orderId}', [OrderController::class, 'show']);
+
+    Route::get('profile', [FrontendUserController::class, 'index']);
+    Route::post('profile', [FrontendUserController::class, 'updateUserDetails']);
 
 });
 
@@ -128,4 +134,13 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function(){
         Route::get('/invoice/{orderId}/generate', 'generateInvoice');
     });
 
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/users', 'index');
+        Route::get('/users/create', 'create');
+        Route::post('/users', 'store');
+        Route::get('/users/{user_id}/edit', 'edit');
+        Route::put('/users/{user_id}', 'update');
+        Route::get('/users/{user_id}/delete', 'destroy');
+
+    });
 });

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4><b>Sản Phẩm Mới</b></h4>
+                <h4><b>Sản Phẩm Tìm Kiếm</b></h4>
                 <div class="underline mb-4"></div>
             </div>
                 @forelse ($newArrivalsProducts as $productItem)

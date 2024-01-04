@@ -14,10 +14,15 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Bạn đã đăng nhập! Trang sẽ chuyển hướng trong 3 giây') }}
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    setTimeout(function(){
+        window.location.href = "/";
+    }, 3000);
+</script>
 @endsection
