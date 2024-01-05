@@ -7,6 +7,7 @@ use App\Models\Order;
 use Livewire\Component;
 use App\Models\Orderitem;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Mail\PlaceOrderMailable;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,7 +15,9 @@ class CheckoutShow extends Component
 {
     public $carts, $totalProductAmount =0;
 
-    public $fullname, $email, $phone, $pincode, $address, $payment_mode =NULL , $payment_id =NULL;
+    public $fullname, $email, $phone, $pincode, $address, $payment_mode =NULL , $payment_id =NULL, $redirect;
+
+
 
     public function rules(){
         return [
@@ -89,6 +92,8 @@ class CheckoutShow extends Component
                     type:'error');
     }
     }
+
+
 
     public function totalProductAmount(){
         $this->totalProductAmount =0;

@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\UserController as FrontendUserController;
 use App\Http\Controllers\Frontend\WishListController;
+use App\Livewire\Frontend\Checkout\CheckoutShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,9 @@ Route::middleware(['auth'])->group(function(){
     
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders/{orderId}', [OrderController::class, 'show']);
+
+    Route::post('/thank-you/vnpay', [CheckoutController::class, 'vnPay']);
+    Route::get('/thank-you/vnpay/result', [CheckoutController::class, 'vnPayResult']);
 
     Route::get('profile', [FrontendUserController::class, 'index']);
     Route::post('profile', [FrontendUserController::class, 'updateUserDetails']);
